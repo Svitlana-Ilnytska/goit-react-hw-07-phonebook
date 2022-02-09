@@ -1,9 +1,7 @@
 import React from "react";
-// import { useSelector, useDispatch } from "react-redux";
 import ContactItem from "../ContactItem/ContactItem";
-// import contactsActions from "../../redux/contacts/contacts-actions";
-import { useFetchContactsQuery } from "../../redux/contacts/contactsSlice";
-import { useDeleteContactMutation } from "../../redux/contacts/contactsSlice";
+import { useFetchContactsQuery, useDeleteContactMutation } from "../../redux/contacts/contactsSlice";
+
 import css from "./ContactList.module.css";
 
 // const filterAllContacts = (contacts, filter) => {

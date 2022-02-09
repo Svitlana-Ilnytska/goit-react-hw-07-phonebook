@@ -1,13 +1,12 @@
 import React from "react";
 import { useSelector, useDispatch } from "react-redux";
-import contactsActions from "../../redux/contacts/contacts-actions";
+import filterContact from "../../redux/contacts/contacts-actions";
 
 const Filter = () => {
-  const value = useSelector((state) => state.contacts.filter);
+  const value = useSelector((state) => state.filter);
   const dispatch = useDispatch();
 
-  const handleFilter = (e) =>
-    dispatch(contactsActions.filterContact(e.target.value));
+  const handleFilter = (e) => dispatch(filterContact(e.target.value));
 
   return (
     <>
