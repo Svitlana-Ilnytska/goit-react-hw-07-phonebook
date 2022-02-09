@@ -1,13 +1,16 @@
 import React, { useState } from "react";
 // import { useDispatch, useSelector } from "react-redux";
 // import contactsActions from "../../redux/contacts/contacts-actions";
-import { useCreateContactMutation } from "../../redux/contacts/contactsSlice";
+import {
+  useCreateContactMutation,
+  useFetchContactsQuery,
+} from "../../redux/contacts/contactsSlice";
 import css from "./ContactForm.module.css";
 
 export default function ContactForm() {
   const [name, setName] = useState("");
   const [number, setNumber] = useState("");
-
+  const { data: contacts } = useFetchContactsQuery();
   // const contacts = useSelector((state) => state.contacts.items);
   // const dispatch = useDispatch();
 
@@ -36,15 +39,15 @@ export default function ContactForm() {
       number: number,
     };
 
-    // const theSameContact = contacts.some((contact) =>
-    //   contact.name.toLowerCase().includes(contactName.name.toLowerCase())
-    // );
+    const theSameContact = contacts.some((contact) =>
+      contact.name.toLowerCase().includes(contactName.name.toLowerCase())
+    );
 
-    // if (theSameContact)
-    //   return alert(`${contactName.name}  is already in contacts.`);
+    if (theSameContact)
+      return alert(`${contactName.name}  is already in contacts.`);
 
     // dispatch(contactsActions.addContact(contactName));
-    createContact({...contactName});
+    createContact(contactName);
     setName("");
     setNumber("");
   };

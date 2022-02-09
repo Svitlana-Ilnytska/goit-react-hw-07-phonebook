@@ -23,7 +23,7 @@ const ContactList = () => {
   // const dispatch = useDispatch();
 
   // const onDeleteContact = (id) => dispatch(contactsActions.deleteContact(id));
-  const [deleteContact, { isLoading: isDeleting }] = useDeleteContactMutation();
+  const [deleteContact] = useDeleteContactMutation();
   return (
     <ul className={css.wrapList}>
       {contacts &&
