@@ -1,22 +1,24 @@
 import React from "react";
+import { useSelector } from "react-redux";
 import ContactItem from "../ContactItem/ContactItem";
-import { useFetchContactsQuery, useDeleteContactMutation } from "../../redux/contacts/contactsSlice";
+import {
+  useFetchContactsQuery,
+  useDeleteContactMutation,
+} from "../../redux/contacts/contactsSlice";
 
 import css from "./ContactList.module.css";
 
-// const filterAllContacts = (contacts, filter) => {
-//   return contacts.filter((contact) =>
-//     contact.name.toLowerCase().includes(filter.toLowerCase())
-//   );
-// };
+const filterAllContacts = (contacts, filter) => {
+  return contacts.filter((contact) =>
+    contact.name.toLowerCase().includes(filter.toLowerCase())
+  );
+};
 
 const ContactList = () => {
   // eslint-disable-next-line no-unused-vars
   const { data: contacts, isFetching } = useFetchContactsQuery();
-
-  // const items = useSelector((state) =>
-  //   filterAllContacts(state.contacts.items, state.contacts.filter)
-  // );
+  const filterAll = useSelector((state) => state.filter);
+  const items = filterAllContacts(contacts, filterAll);
 
   // const dispatch = useDispatch();
 
@@ -24,15 +26,14 @@ const ContactList = () => {
   const [deleteContact] = useDeleteContactMutation();
   return (
     <ul className={css.wrapList}>
-      {contacts &&
-        contacts.map((item) => (
-          <li key={item.id} className={css.wrapItem}>
-            <ContactItem
-              {...item}
-              onDeleteContact={() => deleteContact(item.id)}
-            />
-          </li>
-        ))}
+      {items && items.map((item) => (
+        <li key={item.id} className={css.wrapItem}>
+          <ContactItem
+            {...item}
+            onDeleteContact={() => deleteContact(item.id)}
+          />
+        </li>
+      ))}
     </ul>
   );
 };
