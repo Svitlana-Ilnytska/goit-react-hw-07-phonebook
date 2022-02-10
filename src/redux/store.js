@@ -10,9 +10,7 @@ const middleware = (getDefaultMiddleware) => [
 
 export const store = configureStore({
   reducer: items,
-
   // [contactApi.reducerPath]: contactApi.reducer,
-
   middleware: middleware,
 });
 
