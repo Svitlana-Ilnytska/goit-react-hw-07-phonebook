@@ -1,9 +1,10 @@
 import React from "react";
 import { useSelector, useDispatch } from "react-redux";
 import filterContact from "../../redux/contacts/contacts-actions";
+import getFilter from "../../redux/contacts/contacts-selectors";
 
 const Filter = () => {
-  const value = useSelector((state) => state.filter);
+  const value = useSelector(getFilter);
   const dispatch = useDispatch();
 
   const handleFilter = (e) => dispatch(filterContact(e.target.value));
